@@ -179,7 +179,7 @@ class KiaUvoApiEU(ApiImplType1):
         cookies = self._get_cookies()
         self._set_session_language(cookies)
         if BRANDS[self.brand] == BRAND_KIA:
-            refresh_token = "<REFRESH_TOKEN>"
+            refresh_token = password
 
             _, access_token, authorization_code, expires_in = self._get_access_token(
                 stamp, refresh_token
