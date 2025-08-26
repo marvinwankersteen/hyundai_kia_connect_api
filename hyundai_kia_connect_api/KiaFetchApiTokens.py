@@ -115,7 +115,7 @@ def _get_tokens(code):
 
 def main():
     if len(sys.argv) == 1:
-        print("Step 1: Open https://www.kia.com/ in your browser and log in using your Kia credentials and solve the reCAPTCHA.")
+        print("Step 1: Open https://www.kia.com/de/ in your browser and log in using your Kia credentials and solve the reCAPTCHA.")
         confirm = input("Was the login successful? (y/n): ").strip().lower()
 
         if confirm != "y":
