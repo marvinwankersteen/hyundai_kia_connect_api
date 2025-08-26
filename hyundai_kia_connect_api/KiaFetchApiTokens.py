@@ -13,7 +13,7 @@ user_agent = (
 )
 auth_domain = "https://idpconnect-eu.kia.com"
 redirect_url = "https://prd.eu-ccapi.kia.com:8080/api/v1/user/oauth2/redirect"
-debug = True
+debug = False
 
 # Initialize session with headers
 session = requests.Session()
