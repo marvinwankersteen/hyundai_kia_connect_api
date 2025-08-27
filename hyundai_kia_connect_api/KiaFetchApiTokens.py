@@ -118,7 +118,7 @@ def main():
         url = "https://idpconnect-eu.kia.com/auth/api/v2/user/oauth2/authorize?ui_locales=de&scope=openid+profile+email+phone&response_type=code&client_id=peukiaidm-online-sales&redirect_uri=https%3A%2F%2Fwww.kia.com%2Fapi%2Fbin%2Foneid%2Flogin&state=aHR0cHM6Ly93d3cua2lhLmNvbS9kZS8"
 
         print(f"Step 1: Open your Browser (best is Chrome), CTRL+SHIFT+I, CTRL-SHIFT+P, type 'network conditions', uncheck 'Use browser default' and set the following user-agent:\n")
-        print(f"        User-Agent: {user_agent}\n")
+        print(f"        {user_agent}\n")
         print(f"Step 2: Open this URL:\n")
         print(f"        {url}\n")
         print(f"Step 3: Solve the reCAPTCHA and login with your credentials. After successful login, you get redirected to Kia's homepage.")
