@@ -133,7 +133,7 @@ def main():
 
         print(f"\nStep 4: Open the following URL in the SAME browser tab where you're logged in:\n")
         print(f"        {auth_url}\n")
-        redirect_url = input("Step 3: A blank page will open with the URL from step 4 which starts with 'https://prd.eu-ccapi.kia.com:8080/api/v1/user/oauth2/redirect?code=...'\n        Copy the full URL from the address bar and paste it here:\n> ")
+        redirect_url = input("Step 5: A blank page will open with the URL from step 4 which starts with 'https://prd.eu-ccapi.kia.com:8080/api/v1/user/oauth2/redirect?code=...'\n        Copy the full URL from the address bar and paste it here:\n> ")
 
         try:
             code = re.search(
