@@ -56,7 +56,7 @@ def _get_connector_session_key():
     response = session.get(url)
     _debug_response(response)
 
-    print(f"\n  Fetch the connector_session_key...", end="")
+    print(f"\n        Fetch the connector_session_key...", end="")
     try:
         key = re.search(r'connector_session_key%3D([0-9a-fA-F-]{36})', response.url).group(1)
         if response.status_code == 200:
@@ -115,8 +115,15 @@ def _get_tokens(code):
 
 def main():
     if len(sys.argv) == 1:
-        print("Step 1: Open https://www.kia.com/de/ in your browser and log in using your Kia credentials and solve the reCAPTCHA.")
-        confirm = input("Was the login successful? (y/n): ").strip().lower()
+        url = "https://idpconnect-eu.kia.com/auth/api/v2/user/oauth2/authorize?ui_locales=de&scope=openid+profile+email+phone&response_type=code&client_id=peukiaidm-online-sales&redirect_uri=https%3A%2F%2Fwww.kia.com%2Fapi%2Fbin%2Foneid%2Flogin&state=aHR0cHM6Ly93d3cua2lhLmNvbS9kZS8"
+        useragent = "Mozilla/5.0 (Linux; Android 4.1.1; Galaxy Nexus Build/JRO03C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19_CCS_APP_AOS"
+
+        print(f"Step 1: Open your Browser (best is Chrome), CTRL+SHIFT+I, CTRL-SHIFT+P, type 'network conditions', uncheck 'Use browser default' and set the following user-agent:\n")
+        print(f"        User-Agent: {useragent}\n")
+        print(f"Step 2: Open this URL:\n")
+        print(f"        {url}\n")
+        print(f"Step 3: Solve the reCAPTCHA and login with your credentials. After successful login, you get redirected to Kia's homepage.")
+        confirm = input("        Was the login successful? (y/n): ").strip().lower()
 
         if confirm != "y":
             print("Exiting script. Please try again after successful login.")
@@ -125,8 +132,9 @@ def main():
         connector_session_key = _get_connector_session_key()
         auth_url = _build_oauth_authorize_url(connector_session_key)
 
-        print(f"\nStep 2: Open the following URL in the SAME browser tab where you're logged in:\n{auth_url}")
-        redirect_url = input("\nStep 3: A blank page will open with the URL from step 2 which starts with 'https://prd.eu-ccapi.kia.com:8080/api/v1/user/oauth2/redirect?code=...'\n        Copy the full URL from the address bar and paste it here:\n> ")
+        print(f"\nStep 4: Open the following URL in the SAME browser tab where you're logged in:\n")
+        print(f"        {auth_url}\n")
+        redirect_url = input("Step 3: A blank page will open with the URL from step 4 which starts with 'https://prd.eu-ccapi.kia.com:8080/api/v1/user/oauth2/redirect?code=...'\n        Copy the full URL from the address bar and paste it here:\n> ")
 
         try:
             code = re.search(
